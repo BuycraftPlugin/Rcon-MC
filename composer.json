@@ -1,0 +1,10 @@
+{
+	"name": "tebex/rcon-mc",
+	"description": "RCON library for Minecraft.",
+	"homepage": "https://github.com/BuycraftPlugin/Rcon-MC",
+	"autoload": {
+		"psr-4": { 
+			"TebexRconMc\\": "src/"
+		}
+    } 
+}
