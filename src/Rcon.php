@@ -36,6 +36,8 @@ class Rcon
         $this->port = $port;
         $this->password = $password;
         $this->timeout = $timeout;
+
+        set_error_handler([$this, "handleError"]);
     }
 
     /**
@@ -67,6 +69,15 @@ class Rcon
 
         // check authorization
         return $this->authorize();
+    }
+
+    public function handleError($errno, $errstr, $errfile, $errline)
+    {
+        if (($errno & error_reporting()) > 0) {
+            throw new \ErrorException($errstr, 500, $errno, $errfile, $errline);
+        } else {
+            return false;
+        }
     }
 
     /**
